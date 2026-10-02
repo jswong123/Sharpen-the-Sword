@@ -43,13 +43,9 @@ export class ScenarioManager {
 
  
 
-        const [scenarioResponse, unitsResponse] = await Promise.all([
-
-            fetch(config.scenarioPath, { cache: "no-store" }),
-
-            fetch(config.unitsPath, { cache: "no-store" })
-
-        ]);
+        const isModern = ModernBrigadeSystem.isModern(config);
+        const scenarioResponse = await fetch(config.scenarioPath, { cache: "no-store" });
+        const unitsResponse = isModern ? null : await fetch(config.unitsPath, { cache: "no-store" });
 
  
 
@@ -59,20 +55,21 @@ export class ScenarioManager {
 
         }
 
-        if (!unitsResponse.ok) {
-
+        if (!isModern && !unitsResponse.ok) {
             throw new Error(`${config.name} 单位加载失败：HTTP ${unitsResponse.status}`);
-
         }
 
  
 
         const scenarioData = await scenarioResponse.json();
 
-        const rawUnits = await unitsResponse.json();
-
-        let units = Array.isArray(rawUnits) ? rawUnits : (rawUnits.units ?? []);
-        if (ModernBrigadeSystem.isModern(config)) units = ModernBrigadeSystem.generate(config);
+        let units;
+        if (isModern) {
+            units = ModernBrigadeSystem.generate(config);
+        } else {
+            const rawUnits = await unitsResponse.json();
+            units = Array.isArray(rawUnits) ? rawUnits : (rawUnits.units ?? []);
+        }
 
  
 

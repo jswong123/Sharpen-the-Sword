@@ -92,12 +92,12 @@
       {
         "q": 0,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 0,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 0,
@@ -252,12 +252,12 @@
       {
         "q": 1,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 1,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 1,
@@ -412,12 +412,12 @@
       {
         "q": 2,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 2,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 2,
@@ -572,12 +572,12 @@
       {
         "q": 3,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 3,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 3,
@@ -732,12 +732,12 @@
       {
         "q": 4,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 4,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 4,
@@ -892,12 +892,12 @@
       {
         "q": 5,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 5,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 5,
@@ -1052,12 +1052,12 @@
       {
         "q": 6,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 6,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 6,
@@ -1212,12 +1212,12 @@
       {
         "q": 7,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 7,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 7,
@@ -1372,12 +1372,12 @@
       {
         "q": 8,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 8,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 8,
@@ -1532,12 +1532,12 @@
       {
         "q": 9,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 9,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 9,
@@ -1692,12 +1692,12 @@
       {
         "q": 10,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 10,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 10,
@@ -1852,12 +1852,12 @@
       {
         "q": 11,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 11,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 11,
@@ -2012,12 +2012,12 @@
       {
         "q": 12,
         "r": 15,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 12,
         "r": 16,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 12,
@@ -2172,12 +2172,12 @@
       {
         "q": 13,
         "r": 15,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 13,
         "r": 16,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 13,
@@ -2332,12 +2332,12 @@
       {
         "q": 14,
         "r": 15,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 14,
         "r": 16,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 14,
@@ -2492,12 +2492,12 @@
       {
         "q": 15,
         "r": 15,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 15,
         "r": 16,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 15,
@@ -2652,12 +2652,12 @@
       {
         "q": 16,
         "r": 15,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 16,
         "r": 16,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 16,
@@ -2812,12 +2812,12 @@
       {
         "q": 17,
         "r": 15,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 17,
         "r": 16,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 17,
@@ -2972,12 +2972,12 @@
       {
         "q": 18,
         "r": 15,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 18,
         "r": 16,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 18,
@@ -3132,12 +3132,12 @@
       {
         "q": 19,
         "r": 15,
-        "type": "urban"
+        "type": "water"
       },
       {
         "q": 19,
         "r": 16,
-        "type": "urban"
+        "type": "water"
       },
       {
         "q": 19,
@@ -3292,12 +3292,12 @@
       {
         "q": 20,
         "r": 15,
-        "type": "urban"
+        "type": "water"
       },
       {
         "q": 20,
         "r": 16,
-        "type": "urban"
+        "type": "water"
       },
       {
         "q": 20,
@@ -3452,12 +3452,12 @@
       {
         "q": 21,
         "r": 15,
-        "type": "urban"
+        "type": "water"
       },
       {
         "q": 21,
         "r": 16,
-        "type": "urban"
+        "type": "water"
       },
       {
         "q": 21,
@@ -3537,557 +3537,557 @@
       {
         "q": 22,
         "r": 0,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 1,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 2,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 3,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 4,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 5,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 6,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 7,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 8,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 9,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 10,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 11,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 12,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 13,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 22,
         "r": 14,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 22,
         "r": 15,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 22,
         "r": 16,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 22,
         "r": 17,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 22,
         "r": 18,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 22,
         "r": 19,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 22,
         "r": 20,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 21,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 22,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 23,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 24,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 25,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 26,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 27,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 28,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 29,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 30,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 22,
         "r": 31,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 0,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 1,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 2,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 3,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 4,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 5,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 6,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 7,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 8,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 9,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 10,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 11,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 12,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 13,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 23,
         "r": 14,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 23,
         "r": 15,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 23,
         "r": 16,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 23,
         "r": 17,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 23,
         "r": 18,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 23,
         "r": 19,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 23,
         "r": 20,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 21,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 22,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 23,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 24,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 25,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 26,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 27,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 28,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 29,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 30,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 23,
         "r": 31,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 0,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 1,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 2,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 3,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 4,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 5,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 6,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 7,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 8,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 9,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 10,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 11,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 12,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 13,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 24,
         "r": 14,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 24,
         "r": 15,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 24,
         "r": 16,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 24,
         "r": 17,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 24,
         "r": 18,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 24,
         "r": 19,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 24,
         "r": 20,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 21,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 22,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 23,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 24,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 25,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 26,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 27,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 28,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 29,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 30,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 24,
         "r": 31,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 0,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 1,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 2,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 3,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 4,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 5,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 6,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 7,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 8,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 9,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 10,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 11,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 12,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 13,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 25,
         "r": 14,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 25,
@@ -4102,77 +4102,77 @@
       {
         "q": 25,
         "r": 17,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 25,
         "r": 18,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 25,
         "r": 19,
-        "type": "water"
+        "type": "urban"
       },
       {
         "q": 25,
         "r": 20,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 21,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 22,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 23,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 24,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 25,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 26,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 27,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 28,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 29,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 30,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 25,
         "r": 31,
-        "type": "water"
+        "type": "plain"
       },
       {
         "q": 26,
@@ -4252,12 +4252,12 @@
       {
         "q": 26,
         "r": 15,
-        "type": "urban"
+        "type": "water"
       },
       {
         "q": 26,
         "r": 16,
-        "type": "urban"
+        "type": "water"
       },
       {
         "q": 26,
@@ -4412,12 +4412,12 @@
       {
         "q": 27,
         "r": 15,
-        "type": "urban"
+        "type": "water"
       },
       {
         "q": 27,
         "r": 16,
-        "type": "urban"
+        "type": "water"
       },
       {
         "q": 27,
@@ -4572,12 +4572,12 @@
       {
         "q": 28,
         "r": 15,
-        "type": "urban"
+        "type": "water"
       },
       {
         "q": 28,
         "r": 16,
-        "type": "urban"
+        "type": "water"
       },
       {
         "q": 28,
@@ -4732,12 +4732,12 @@
       {
         "q": 29,
         "r": 15,
-        "type": "urban"
+        "type": "water"
       },
       {
         "q": 29,
         "r": 16,
-        "type": "urban"
+        "type": "water"
       },
       {
         "q": 29,
@@ -4892,12 +4892,12 @@
       {
         "q": 30,
         "r": 15,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 30,
         "r": 16,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 30,
@@ -5052,12 +5052,12 @@
       {
         "q": 31,
         "r": 15,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 31,
         "r": 16,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 31,
@@ -5212,12 +5212,12 @@
       {
         "q": 32,
         "r": 15,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 32,
         "r": 16,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 32,
@@ -5372,12 +5372,12 @@
       {
         "q": 33,
         "r": 15,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 33,
         "r": 16,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 33,
@@ -5532,12 +5532,12 @@
       {
         "q": 34,
         "r": 15,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 34,
         "r": 16,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 34,
@@ -5692,12 +5692,12 @@
       {
         "q": 35,
         "r": 15,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 35,
         "r": 16,
-        "type": "plain"
+        "type": "water"
       },
       {
         "q": 35,
@@ -5852,12 +5852,12 @@
       {
         "q": 36,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 36,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 36,
@@ -6012,12 +6012,12 @@
       {
         "q": 37,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 37,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 37,
@@ -6172,12 +6172,12 @@
       {
         "q": 38,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 38,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 38,
@@ -6332,12 +6332,12 @@
       {
         "q": 39,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 39,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 39,
@@ -6492,12 +6492,12 @@
       {
         "q": 40,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 40,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 40,
@@ -6652,12 +6652,12 @@
       {
         "q": 41,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 41,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 41,
@@ -6812,12 +6812,12 @@
       {
         "q": 42,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 42,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 42,
@@ -6972,12 +6972,12 @@
       {
         "q": 43,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 43,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 43,
@@ -7132,12 +7132,12 @@
       {
         "q": 44,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 44,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 44,
@@ -7292,12 +7292,12 @@
       {
         "q": 45,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 45,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 45,
@@ -7452,12 +7452,12 @@
       {
         "q": 46,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 46,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 46,
@@ -7612,12 +7612,12 @@
       {
         "q": 47,
         "r": 15,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 47,
         "r": 16,
-        "type": "forest"
+        "type": "water"
       },
       {
         "q": 47,
@@ -7727,7 +7727,7 @@
     "bridges": [
       {
         "q": 23,
-        "r": 16,
+        "r": 15,
         "hp": 120,
         "maxHp": 120
       }

@@ -1622,7 +1622,7 @@ function renderCasualtyPanel(){
         const kills=Object.entries(s.destroyed).filter(([,n])=>n>0).map(([e,n])=>`${e}×${n}`).join(' · ')||'无';
         const cmd=Object.entries(s.commandDestroyed).filter(([,n])=>n>0).map(([e,n])=>`${e}×${n}`).join(' · ')||'无';
         const names=s.commandNames.length?`<div class="casualty-command-names">${s.commandNames.map(x=>`• ${x}`).join('<br>')}</div>`:'';
-        return `<div class="casualty-side"><strong>${FactionSystem.getSideName(side)||side}</strong><div>累计投入：${s.committed}</div><div>当前有效兵力：${current}</div><div>累计损失：${s.losses} <b>（${rate.toFixed(1)}%）</b></div><div>被消灭：${kills}</div><div class="casualty-command"><b>指挥机构损失：</b>${cmd}${names}</div></div>`;
+        return `<div class="casualty-side"><strong>${factionLabel(side)||side}</strong><div>累计投入：${s.committed}</div><div>当前有效兵力：${current}</div><div>累计损失：${s.losses} <b>（${rate.toFixed(1)}%）</b></div><div>被消灭：${kills}</div><div class="casualty-command"><b>指挥机构损失：</b>${cmd}${names}</div></div>`;
     }).join('');
 }
 function syncCasualties(){for(const u of units)recordCasualtyDelta(u);renderCasualtyPanel();}
@@ -3077,7 +3077,7 @@ async function loadScenario(scenarioKey = "dubno", resumeSnapshot = null) {
         units = units.filter(unit => unit.offMap === true || isUnitAlive(unit));
         const deploymentReport = runDeploymentSafetyCheck(units, { autoRepair: true });
         if (deploymentReport.invalid.length || deploymentReport.conflicts.length) {
-            throw new Error(`${loaded.config.unitsPath} 主系统部署安全检查失败，请查看浏览器控制台`);
+            throw new Error(`${loaded.config.modernBrigadeSelection?"现代旅动态编组":loaded.config.unitsPath} 主系统部署安全检查失败，请查看浏览器控制台`);
         }
         if(!validateUnits(units)) throw new Error(`${loaded.config.unitsPath} 单位数据检查失败，请查看浏览器控制台`);
         const counts={}; for(const unit of units){const side=getUnitSide(unit);counts[side]=(counts[side]??0)+1;}
@@ -3106,7 +3106,7 @@ async function loadScenario(scenarioKey = "dubno", resumeSnapshot = null) {
 // ============================================================
 // V0.3.1 主界面 / 存档槽 UI
 // ============================================================
-function factionLabel(side){ const v=normalizeSide(side); return v==='chinese'?'中国军':v==='japanese'?'日军':v==='german'?'德军':v==='soviet'?'苏军':v==='rok_government'?'政府军':v==='new_military'?'新军部':(side??''); }
+function factionLabel(side){ const v=normalizeSide(side); if(currentScenarioConfig?.modernBrigadeSelection)return v==='chinese'?'红方':v==='japanese'?'蓝方':(side??''); return v==='chinese'?'中国军':v==='japanese'?'日军':v==='german'?'德军':v==='soviet'?'苏军':v==='rok_government'?'政府军':v==='new_military'?'新军部':(side??''); }
 function showMainMenu(){ document.getElementById('pauseMenu')?.setAttribute('hidden',''); document.getElementById('mainMenu')?.removeAttribute('hidden'); updateMainMenu(); }
 function hideMainMenu(){ document.getElementById('mainMenu')?.setAttribute('hidden',''); }
 function updateMainMenu(){ const b=document.getElementById('menuContinue'); if(b)b.disabled=!(saveSystem.hasResume()||saveSystem.hasAutoSave()); }
