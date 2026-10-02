@@ -1,0 +1,32 @@
+Frontline v0.26.6 完整性离线审计
+
+战役墙段总数: 682
+单位总数: 6162
+兵力字段严重错误: 0
+
+城墙审计:
+('scenario-melbourne-cbd.json', 0, 0, 0)
+('scenario-dongyang_1942.json', 0, 0, 0)
+('scenario-changsha3.json', 0, 0, 0)
+('scenario-wanjialing.json', 0, 0, 0)
+('scenario-system-test.json', 2, 0, 0)
+('scenario-guangzhou.json', 106, 0, 0)
+('scenario-shanghai.json', 0, 0, 0)
+('scenario-sihang.json', 39, 0, 0)
+('scenario-west_hunan.json', 0, 0, 0)
+('scenario-kursk.json', 0, 0, 0)
+('scenario-berlin.json', 0, 0, 0)
+('scenario-smolensk.json', 0, 0, 0)
+('scenario-kunlun.json', 0, 0, 0)
+('scenario-seoul1979.json', 0, 0, 0)
+('scenario-guilin_liuzhou.json', 0, 0, 0)
+('scenario-changde.json', 0, 0, 0)
+('scenario-hangzhou_1937.json', 80, 0, 0)
+('scenario-tengxian.json', 84, 0, 0)
+('scenario-nanjing.json', 144, 0, 0)
+('scenario-mamayev-kurgan.json', 0, 0, 0)
+('scenario-melbourne.json', 0, 0, 0)
+('scenario-hengyang.json', 48, 0, 0)
+('scenario-taierzhuang.json', 54, 0, 0)
+('scenario-zhejiang_jiangxi.json', 77, 0, 0)
+('scenario-wuhan.json', 48, 0, 0)
