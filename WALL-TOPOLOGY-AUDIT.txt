@@ -1,0 +1,15 @@
+v0.26.7 城墙连续性/拓扑审计
+含城墙战役: 10  墙段总数: 682  非相邻错误: 0  分叉节点: 85
+
+scenario-system-test.json              墙段=   2 非相邻= 0 分叉= 0 独立墙线=  1
+scenario-guangzhou.json                墙段= 106 非相邻= 0 分叉= 0 独立墙线=  7
+scenario-sihang.json                   墙段=  39 非相邻= 0 分叉= 9 独立墙线=  1
+scenario-hangzhou_1937.json            墙段=  80 非相邻= 0 分叉=18 独立墙线=  1
+scenario-tengxian.json                 墙段=  84 非相邻= 0 分叉= 0 独立墙线= 80
+scenario-nanjing.json                  墙段= 144 非相邻= 0 分叉=30 独立墙线=  1
+scenario-hengyang.json                 墙段=  48 非相邻= 0 分叉= 0 独立墙线=  2
+scenario-taierzhuang.json              墙段=  54 非相邻= 0 分叉= 6 独立墙线=  1
+scenario-zhejiang_jiangxi.json         墙段=  77 非相邻= 0 分叉=22 独立墙线=  9
+scenario-wuhan.json                    墙段=  48 非相邻= 0 分叉= 0 独立墙线=  8
+
+说明：Renderer 已加入连续墙体接缝层。度数=2的连续 wallEdges 自动补齐视觉接缝；度数>2不会自动乱连，并由 IntegrityMonitor 报警。
