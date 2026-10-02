@@ -6,7 +6,7 @@
   "startTime": "08:00",
   "hoursPerTurn": 1,
   "startingPhase": "chinese",
-  "description": "虚构训练基地旅级红蓝对抗。红方由西向东、蓝方由东向西展开；争夺中央城镇、北部高地和南部渡河场。",
+  "description": "虚构联合训练基地旅级红蓝对抗。红方由西向东、蓝方由东向西展开；双方分第一梯队、第二梯队与旅级纵深保障力量，争夺中央训练城镇、北部高地和南部渡河场。",
   "map": {
     "id": "lijian26",
     "name": "砺剑联合训练基地",
@@ -5917,7 +5917,7 @@
       {
         "q": 29,
         "r": 20,
-        "type": "urban"
+        "type": "plain"
       },
       {
         "q": 29,
@@ -6117,7 +6117,7 @@
       {
         "q": 30,
         "r": 20,
-        "type": "urban"
+        "type": "plain"
       },
       {
         "q": 30,
@@ -12022,7 +12022,7 @@
         "nameZh": "中央训练城镇"
       },
       {
-        "q": 24,
+        "q": 25,
         "r": 9,
         "nameZh": "北部高地"
       },
@@ -12129,7 +12129,7 @@
         "description": "控制北部高地，获得北翼观察与机动优势。",
         "priority": "secondary",
         "deadlineTurn": 18,
-        "q": 24,
+        "q": 25,
         "r": 9,
         "controlRadius": 1,
         "action": "capture"
@@ -12164,7 +12164,7 @@
         "description": "控制北部高地，获得北翼观察与机动优势。",
         "priority": "secondary",
         "deadlineTurn": 18,
-        "q": 24,
+        "q": 25,
         "r": 9,
         "controlRadius": 1,
         "action": "capture"
@@ -12191,7 +12191,7 @@
       "forcePreservation": 100,
       "commandIntegrity": 100
     },
-    "note": "评分接口预留；当前版本由战略目标面板追踪三个地域目标。"
+    "note": "v0.1.4：单位部署已与河道分离；三个地域目标由战略目标系统追踪，红蓝双方对称计分。"
   },
   "victoryConditions": {
     "deadlineTurn": 24,
