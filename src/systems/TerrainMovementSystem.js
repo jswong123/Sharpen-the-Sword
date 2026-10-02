@@ -1,20 +1,32 @@
 // ============================================================
 // TerrainMovementSystem.js
 // 战线 1937-1945
-// V0.12.4 杭州完整水系整合版
+// V0.13.1 现代合成旅机动兼容版
 //
 // 直接替换：src/systems/TerrainMovementSystem.js
 //
-// 规则：
+// ============================================================
+// 核心规则
+// ============================================================
+//
 // 1. water 对陆军绝对不可通行。
-// 2. 道路/铁路不能再自动把 water 当作桥。
-// 3. 杭州 scenario 中指定的 bridges / crossingCells 才是合法桥梁。
-// 4. 为兼容旧版杭州地图，钱塘江大桥 (70,52) 内置为后备桥位。
-// 5. 西湖、青山湖：water，陆军不可进入。
-// 6. 西溪湿地：步兵3、工兵2、炮兵4、骑兵4、车辆不可进入。
-// 7. 京杭大运河：若地图已实体化为 water，则只能经指定桥位跨越。
-// 8. 舰艇只能在 water 上移动。
-// 9. 其他战役继续使用原有普通地形规则。
+// 2. 道路/铁路不能把 water 自动视为桥梁。
+// 3. bridges / crossingCells 才是合法跨水通道。
+// 4. 杭州旧地图保留钱塘江大桥 (70,52) 兼容。
+// 5. 西湖、青山湖等 water 对陆军不可进入。
+// 6. 湿地根据单位移动类型计算。
+// 7. 舰艇只能在 water 上移动。
+// 8. bunker 为实体阻塞工事。
+// 9. 支持现代合成旅：
+//      - ZTZ-99A 等主战坦克
+//      - ZBD-04A 等履带式步战车
+//      - 轮式装甲车
+//      - 猛士/卡车
+//      - 自行火炮
+//      - 防空车辆
+// 10. 坦克/履带车辆允许进入森林，但成本增加。
+// 11. 道路降低车辆移动成本。
+// 12. 兼容旧二战单位 type。
 // ============================================================
 
 export class TerrainMovementSystem {
@@ -29,10 +41,18 @@ export class TerrainMovementSystem {
     // ========================================================
 
     sameHex(a, q, r) {
+
         if (!a) return false;
 
-        const aq = Array.isArray(a) ? a[0] : a.q;
-        const ar = Array.isArray(a) ? a[1] : a.r;
+        const aq =
+            Array.isArray(a)
+                ? a[0]
+                : a.q;
+
+        const ar =
+            Array.isArray(a)
+                ? a[1]
+                : a.r;
 
         return (
             Number(aq) === Number(q) &&
@@ -42,6 +62,7 @@ export class TerrainMovementSystem {
 
 
     scenarioId() {
+
         return String(
             this.world?.scenario?.id ??
             this.world?.scenario?.key ??
@@ -52,6 +73,7 @@ export class TerrainMovementSystem {
 
 
     isHangzhouScenario() {
+
         const id = this.scenarioId();
 
         return (
@@ -114,22 +136,6 @@ export class TerrainMovementSystem {
 
     // ========================================================
     // 桥梁
-    //
-    // 支持：
-    // map.bridges = [
-    //   {
-    //     id: "...",
-    //     q: 70,
-    //     r: 52,
-    //     status: "intact",
-    //     crossingCells: [[70,51],[70,52],[70,53]]
-    //   }
-    // ]
-    //
-    // 同时兼容：
-    // bridge.hex
-    // bridge.cells
-    // bridge.points
     // ========================================================
 
     bridges() {
@@ -137,22 +143,16 @@ export class TerrainMovementSystem {
         const direct =
             this.world?.bridges;
 
-        if (
-            Array.isArray(direct)
-        ) {
+        if (Array.isArray(direct)) {
             return direct;
         }
-
 
         const configBridges =
             this.world?.config?.bridges;
 
-        if (
-            Array.isArray(configBridges)
-        ) {
+        if (Array.isArray(configBridges)) {
             return configBridges;
         }
-
 
         return [];
     }
@@ -164,13 +164,11 @@ export class TerrainMovementSystem {
             return false;
         }
 
-
         const status =
             String(
                 bridge.status ??
                 "intact"
             ).toLowerCase();
-
 
         return ![
             "destroyed",
@@ -187,11 +185,7 @@ export class TerrainMovementSystem {
         const bridges =
             this.bridges();
 
-
-        for (
-            const bridge
-            of bridges
-        ) {
+        for (const bridge of bridges) {
 
             if (
                 !this.isBridgeActive(
@@ -201,11 +195,7 @@ export class TerrainMovementSystem {
                 continue;
             }
 
-
-            // ------------------------------
             // 桥梁中心格
-            // ------------------------------
-
             if (
                 this.sameHex(
                     bridge,
@@ -215,7 +205,6 @@ export class TerrainMovementSystem {
             ) {
                 return true;
             }
-
 
             if (
                 this.sameHex(
@@ -227,17 +216,12 @@ export class TerrainMovementSystem {
                 return true;
             }
 
-
-            // ------------------------------
             // 桥梁通行格
-            // ------------------------------
-
             const cells =
                 bridge.crossingCells ??
                 bridge.cells ??
                 bridge.points ??
                 [];
-
 
             if (
                 cells.some(
@@ -254,16 +238,9 @@ export class TerrainMovementSystem {
         }
 
 
-        // ====================================================
+        // ----------------------------------------------------
         // 杭州旧地图兼容
-        //
-        // 如果 scenario 还没有 bridges 字段，
-        // 钱塘江大桥仍允许在 (70,52) 通行。
-        //
-        // 注意：
-        // V2.5 地图本身应把桥梁走廊从 water 中挖出；
-        // 这里仅作为旧版 scenario 的保险。
-        // ====================================================
+        // ----------------------------------------------------
 
         if (
             this.isHangzhouScenario() &&
@@ -273,23 +250,65 @@ export class TerrainMovementSystem {
             return true;
         }
 
-
         return false;
     }
 
 
     // ========================================================
-    // 单位分类
+    // 单位类型工具
+    // ========================================================
+
+    unitType(unit) {
+
+        return String(
+            unit?.type ??
+            unit?.unitType ??
+            unit?.category ??
+            ""
+        ).toLowerCase();
+    }
+
+
+    equipmentName(unit) {
+
+        return String(
+            unit?.equipment ??
+            unit?.equipmentName ??
+            unit?.vehicle ??
+            unit?.name ??
+            ""
+        ).toLowerCase();
+    }
+
+
+    // ========================================================
+    // 现代车辆进一步分类
+    //
+    // 返回：
+    //
+    // naval
+    // tank
+    // tracked
+    // wheeled
+    // artillery
+    // infantry
+    // engineer
+    // cavalry
+    //
     // ========================================================
 
     classOf(unit) {
 
         const type =
-            String(
-                unit?.type ??
-                ""
-            ).toLowerCase();
+            this.unitType(unit);
 
+        const equipment =
+            this.equipmentName(unit);
+
+
+        // ====================================================
+        // 1. 海军
+        // ====================================================
 
         if (
             unit?.naval === true ||
@@ -300,7 +319,7 @@ export class TerrainMovementSystem {
                 "heavy_cruiser",
                 "light_cruiser",
                 "destroyer",
-                "transport",
+                "transport_ship",
                 "battleship",
                 "carrier",
                 "submarine"
@@ -310,33 +329,21 @@ export class TerrainMovementSystem {
         }
 
 
+        // ====================================================
+        // 2. 工兵
+        // ====================================================
+
         if (
-            [
-                "armor",
-                "armored",
-                "tank",
-                "vehicle",
-                "truck",
-                "motorized",
-                "reconnaissance"
-            ].includes(type)
+            type === "engineer" ||
+            type === "engineering"
         ) {
-            return "vehicle";
+            return "engineer";
         }
 
 
-        if (
-            [
-                "artillery",
-                "field_artillery",
-                "heavy_artillery",
-                "antitank",
-                "antiair"
-            ].includes(type)
-        ) {
-            return "artillery";
-        }
-
+        // ====================================================
+        // 3. 骑兵
+        // ====================================================
 
         if (
             type === "cavalry"
@@ -345,12 +352,132 @@ export class TerrainMovementSystem {
         }
 
 
+        // ====================================================
+        // 4. 主战坦克
+        // ====================================================
+
         if (
-            type === "engineer"
+            [
+                "tank",
+                "mbt",
+                "main_battle_tank",
+                "heavy_tank",
+                "medium_tank",
+                "light_tank"
+            ].includes(type)
         ) {
-            return "engineer";
+            return "tank";
         }
 
+
+        // 根据装备名称识别现代坦克
+
+        if (
+            equipment.includes("ztz") ||
+            equipment.includes("99a") ||
+            equipment.includes("96a") ||
+            equipment.includes("主战坦克")
+        ) {
+            return "tank";
+        }
+
+
+        // ====================================================
+        // 5. 履带式装甲车辆
+        // ====================================================
+
+        if (
+            [
+                "tracked",
+                "tracked_vehicle",
+                "ifv",
+                "apc",
+                "mechanized",
+                "mechanized_infantry"
+            ].includes(type)
+        ) {
+            return "tracked";
+        }
+
+
+        if (
+            equipment.includes("zbd") ||
+            equipment.includes("步战车") ||
+            equipment.includes("履带")
+        ) {
+            return "tracked";
+        }
+
+
+        // ====================================================
+        // 6. 轮式车辆
+        // ====================================================
+
+        if (
+            [
+                "vehicle",
+                "truck",
+                "motorized",
+                "motorized_infantry",
+                "reconnaissance",
+                "recon",
+                "wheeled",
+                "wheeled_vehicle"
+            ].includes(type)
+        ) {
+            return "wheeled";
+        }
+
+
+        if (
+            equipment.includes("猛士") ||
+            equipment.includes("卡车") ||
+            equipment.includes("轮式")
+        ) {
+            return "wheeled";
+        }
+
+
+        // ====================================================
+        // 7. 装甲旧类型
+        //
+        // 二战旧 scenario 中 armor / armored
+        // 统一按坦克处理。
+        // ====================================================
+
+        if (
+            type === "armor" ||
+            type === "armored" ||
+            type === "armour"
+        ) {
+            return "tank";
+        }
+
+
+        // ====================================================
+        // 8. 火炮
+        // ====================================================
+
+        if (
+            [
+                "artillery",
+                "field_artillery",
+                "heavy_artillery",
+                "antitank",
+                "antiair",
+                "air_defense",
+                "sam",
+                "sp_artillery",
+                "self_propelled_artillery"
+            ].includes(type)
+        ) {
+            return "artillery";
+        }
+
+
+        // ====================================================
+        // 9. 默认步兵
+        // ====================================================
 
         return "infantry";
     }
@@ -370,20 +497,35 @@ export class TerrainMovementSystem {
         }
 
 
-        const value =
+        let value =
             rule[unitClass];
 
 
+        // ----------------------------------------------------
+        // 向后兼容：
+        // 旧地图只有 vehicle 时
+        // tank/tracked/wheeled 自动读取 vehicle
+        // ----------------------------------------------------
+
         if (
-            value === false
+            value === undefined &&
+            [
+                "tank",
+                "tracked",
+                "wheeled"
+            ].includes(unitClass)
         ) {
+            value =
+                rule.vehicle;
+        }
+
+
+        if (value === false) {
             return Infinity;
         }
 
 
-        if (
-            value === true
-        ) {
+        if (value === true) {
             return 1;
         }
 
@@ -421,19 +563,20 @@ export class TerrainMovementSystem {
     bridgeCost(unitClass) {
 
         if (
-            unitClass === "vehicle" ||
+            unitClass === "tank" ||
+            unitClass === "tracked" ||
+            unitClass === "wheeled" ||
             unitClass === "artillery"
         ) {
-            return 2;
+            return 1;
         }
-
 
         return 1;
     }
 
 
     // ========================================================
-    // 水域规则
+    // 水域
     // ========================================================
 
     waterCost(
@@ -446,10 +589,7 @@ export class TerrainMovementSystem {
             this.classOf(unit);
 
 
-        // ------------------------------
         // 舰艇
-        // ------------------------------
-
         if (
             unitClass === "naval"
         ) {
@@ -457,10 +597,7 @@ export class TerrainMovementSystem {
         }
 
 
-        // ------------------------------
-        // 指定桥位
-        // ------------------------------
-
+        // 桥梁
         if (
             this.isBridgeHex(
                 q,
@@ -473,21 +610,13 @@ export class TerrainMovementSystem {
         }
 
 
-        // ====================================================
-        // 核心规则：
-        //
-        // 陆军不得直接进入 water。
-        //
-        // 这里故意不检查 road / railway。
-        // 道路经过水面 ≠ 自动生成桥梁。
-        // ====================================================
-
+        // 陆军不得直接进入水域
         return Infinity;
     }
 
 
     // ========================================================
-    // 西溪湿地 / 普通湿地
+    // 湿地
     // ========================================================
 
     wetlandCost(
@@ -499,9 +628,7 @@ export class TerrainMovementSystem {
             this.classOf(unit);
 
 
-        // ------------------------------
         // Scenario 自定义规则优先
-        // ------------------------------
 
         const customCost =
             this.ruleCost(
@@ -518,9 +645,9 @@ export class TerrainMovementSystem {
         }
 
 
-        // ------------------------------
-        // 默认湿地规则
-        // ------------------------------
+        // ----------------------------------------------------
+        // 默认湿地
+        // ----------------------------------------------------
 
         const table = {
 
@@ -530,21 +657,114 @@ export class TerrainMovementSystem {
             engineer:
                 2,
 
-            artillery:
-                4,
-
             cavalry:
                 4,
 
-            vehicle:
-                Infinity
+            artillery:
+                4,
 
+            // 主战坦克禁止直接穿越深湿地
+            tank:
+                Infinity,
+
+            // 履带式步战车允许缓慢通过
+            tracked:
+                4,
+
+            // 轮式车辆禁止
+            wheeled:
+                Infinity
         };
 
 
         return (
             table[unitClass] ??
             3
+        );
+    }
+
+
+    // ========================================================
+    // 道路移动成本
+    // ========================================================
+
+    roadCost(
+        unitClass,
+        terrain
+    ) {
+
+        // 极陡山区即使有道路，
+        // 重装备仍然不能随意通行。
+
+        if (
+            terrain === "steepMountain"
+        ) {
+
+            if (
+                unitClass === "tank" ||
+                unitClass === "tracked" ||
+                unitClass === "wheeled" ||
+                unitClass === "artillery"
+            ) {
+                return Infinity;
+            }
+
+            return 2;
+        }
+
+
+        // ----------------------------------------------------
+        // 公路应提高车辆机动能力
+        // ----------------------------------------------------
+
+        switch (unitClass) {
+
+            case "tank":
+                return 1;
+
+            case "tracked":
+                return 1;
+
+            case "wheeled":
+                return 1;
+
+            case "artillery":
+                return 1;
+
+            case "engineer":
+                return 1;
+
+            case "cavalry":
+                return 1;
+
+            case "infantry":
+            default:
+                return 1;
+        }
+    }
+
+
+    // ========================================================
+    // 碉堡检查
+    // ========================================================
+
+    isBlockingBunker(q, r) {
+
+        return (
+            this.world?.fortifications ??
+            []
+        ).some(
+            f =>
+                Number(f?.q) === Number(q) &&
+                Number(f?.r) === Number(r) &&
+                String(
+                    f?.type ??
+                    ""
+                ).toLowerCase() === "bunker" &&
+                String(
+                    f?.status ??
+                    "intact"
+                ).toLowerCase() !== "destroyed"
         );
     }
 
@@ -568,17 +788,22 @@ export class TerrainMovementSystem {
 
 
         const unitClass =
-            this.classOf(
-                unit
-            );
+            this.classOf(unit);
 
-        // 碉堡是实体阻塞型工事：任何单位都不能进入碉堡所在 Hex。
-        // 已在碉堡格上的施工工兵仍可向外移动，因为这里只检查目标格。
-        const blockingBunker=(this.world?.fortifications??[]).some(f=>
-            Number(f?.q)===Number(q)&&Number(f?.r)===Number(r)&&
-            String(f?.type??'').toLowerCase()==='bunker'&&String(f?.status??'intact').toLowerCase()!=='destroyed'
-        );
-        if(blockingBunker) return Infinity;
+
+        // ====================================================
+        // 0. 碉堡阻塞
+        // ====================================================
+
+        if (
+            this.isBlockingBunker(
+                q,
+                r
+            )
+        ) {
+            return Infinity;
+        }
+
 
         const rules =
             this.world?.waterRules ??
@@ -589,8 +814,6 @@ export class TerrainMovementSystem {
 
         // ====================================================
         // 1. 舰艇
-        //
-        // 舰艇只能进入水域。
         // ====================================================
 
         if (
@@ -603,22 +826,12 @@ export class TerrainMovementSystem {
                 return 1;
             }
 
-
             return Infinity;
         }
 
 
         // ====================================================
         // 2. 水域
-        //
-        // 必须放在道路/铁路判断之前。
-        //
-        // 钱塘江
-        // 西湖
-        // 青山湖
-        // 京杭大运河
-        // 以及其他 scenario 的实体 water
-        // 均受此规则约束。
         // ====================================================
 
         if (
@@ -635,13 +848,6 @@ export class TerrainMovementSystem {
 
         // ====================================================
         // 3. 湿地
-        //
-        // 西溪湿地：
-        // 步兵 3
-        // 工兵 2
-        // 炮兵 4
-        // 骑兵 4
-        // 车辆禁止
         // ====================================================
 
         if (
@@ -686,9 +892,8 @@ export class TerrainMovementSystem {
         // ====================================================
         // 5. 道路 / 铁路
         //
-        // 注意：
-        // 到这里时已经确认 terrain !== water。
-        // 所以 road / railway 永远不能绕过水域封锁。
+        // water 已经在上方处理，
+        // 所以道路不会自动变成桥。
         // ====================================================
 
         const road =
@@ -710,142 +915,274 @@ export class TerrainMovementSystem {
             railway
         ) {
 
-            if (
-                terrain === "steepMountain"
-            ) {
-
-                if (
-                    unitClass === "vehicle" ||
-                    unitClass === "artillery"
-                ) {
-                    return Infinity;
-                }
-
-
-                return 2;
-            }
-
-
-            if (
-                unitClass === "vehicle" ||
-                unitClass === "artillery"
-            ) {
-                return 2;
-            }
-
-
-            return 1;
+            return this.roadCost(
+                unitClass,
+                terrain
+            );
         }
 
 
         // ====================================================
-        // 6. 普通地形
+        // 6. 普通地形移动表
         // ====================================================
 
         const table = {
 
+            // ------------------------------------------------
+            // 平原
+            // ------------------------------------------------
+
             plain: {
 
-                infantry:
-                    1,
+                infantry: 1,
 
-                engineer:
-                    1,
+                engineer: 1,
 
-                artillery:
-                    2,
+                artillery: 2,
 
-                cavalry:
-                    1,
+                cavalry: 1,
 
-                vehicle:
-                    1
+                tank: 1,
+
+                tracked: 1,
+
+                wheeled: 1
             },
 
+
+            // ------------------------------------------------
+            // 丘陵
+            // ------------------------------------------------
 
             hill: {
 
-                infantry:
-                    2,
+                infantry: 2,
 
-                engineer:
-                    2,
+                engineer: 2,
 
-                artillery:
-                    3,
+                artillery: 3,
 
-                cavalry:
-                    2,
+                cavalry: 2,
 
-                vehicle:
-                    3
+                tank: 3,
+
+                tracked: 2,
+
+                wheeled: 3
             },
 
+
+            // ------------------------------------------------
+            // 森林
+            //
+            // 关键修复：
+            // ZTZ-99A 不再被 Infinity 完全锁死。
+            // ------------------------------------------------
 
             forest: {
 
-                infantry:
-                    2,
+                infantry: 2,
 
-                engineer:
-                    2,
+                engineer: 2,
 
-                artillery:
-                    3,
+                artillery: 3,
 
-                cavalry:
-                    3,
+                cavalry: 3,
 
-                vehicle:
-                    Infinity
+                // 主战坦克可进入，
+                // 但移动效率明显下降。
+                tank: 3,
+
+                // 履带步战车森林机动优于坦克
+                tracked: 2,
+
+                // 轮式车辆受到更大限制
+                wheeled: 4
             },
 
+
+            // ------------------------------------------------
+            // 山地
+            // ------------------------------------------------
 
             mountain: {
 
-                infantry:
-                    3,
+                infantry: 3,
 
-                engineer:
-                    3,
+                engineer: 3,
+
+                artillery: 4,
+
+                cavalry: 4,
+
+                // 坦克可以通过一般山地，
+                // 但代价很高。
+                tank: 4,
+
+                tracked: 3,
+
+                // 轮式车辆原则上禁止离路穿越山地。
+                wheeled: Infinity
+            },
+
+
+            // ------------------------------------------------
+            // 极陡山区
+            // ------------------------------------------------
+
+            steepMountain: {
+
+                infantry: 4,
+
+                engineer: 4,
 
                 artillery:
-                    4,
+                    Infinity,
 
                 cavalry:
-                    4,
+                    Infinity,
 
-                vehicle:
+                tank:
+                    Infinity,
+
+                tracked:
+                    Infinity,
+
+                wheeled:
                     Infinity
             },
 
 
-            steepMountain: {
+            // ------------------------------------------------
+            // 城市
+            // ------------------------------------------------
 
-                infantry:
-                    4,
+            urban: {
 
-                engineer:
-                    4,
+                infantry: 1,
 
-                artillery:
-                    Infinity,
+                engineer: 1,
 
-                cavalry:
-                    Infinity,
+                artillery: 2,
 
-                vehicle:
-                    Infinity
+                cavalry: 2,
+
+                tank: 2,
+
+                tracked: 1,
+
+                wheeled: 1
+            },
+
+
+            // ------------------------------------------------
+            // 城镇
+            // ------------------------------------------------
+
+            town: {
+
+                infantry: 1,
+
+                engineer: 1,
+
+                artillery: 2,
+
+                cavalry: 1,
+
+                tank: 1,
+
+                tracked: 1,
+
+                wheeled: 1
+            },
+
+
+            // ------------------------------------------------
+            // 农田
+            // ------------------------------------------------
+
+            farmland: {
+
+                infantry: 1,
+
+                engineer: 1,
+
+                artillery: 2,
+
+                cavalry: 1,
+
+                tank: 1,
+
+                tracked: 1,
+
+                wheeled: 1
+            },
+
+
+            // ------------------------------------------------
+            // 沙漠
+            // ------------------------------------------------
+
+            desert: {
+
+                infantry: 2,
+
+                engineer: 2,
+
+                artillery: 2,
+
+                cavalry: 2,
+
+                tank: 1,
+
+                tracked: 1,
+
+                wheeled: 1
             }
-
         };
 
 
-        return (
-            table[terrain]?.[
-                unitClass
-            ] ??
-            1
-        );
+        // ====================================================
+        // 7. 返回移动成本
+        // ====================================================
+
+        const terrainTable =
+            table[terrain];
+
+
+        /*
+         * 未知地形继续保持兼容：
+         * 不因为新 scenario 出现一个新 terrain 名称
+         * 就让整个移动系统失效。
+         */
+
+        if (!terrainTable) {
+            return 1;
+        }
+
+
+        const movementCost =
+            terrainTable[unitClass];
+
+
+        if (
+            movementCost === Infinity
+        ) {
+            return Infinity;
+        }
+
+
+        if (
+            Number.isFinite(
+                Number(movementCost)
+            )
+        ) {
+            return Number(
+                movementCost
+            );
+        }
+
+
+        return 1;
     }
 }
